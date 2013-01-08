@@ -24,18 +24,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
 import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
 import com.handmark.pulltorefresh.library.internal.IndicatorLayout;
+import com.huewu.pla.lib.MultiColumnListView;
+import com.huewu.pla.lib.internal.PLA_AbsListView;
+import com.huewu.pla.lib.internal.PLA_AbsListView.OnScrollListener;
+import com.huewu.pla.lib.internal.PLA_AdapterView;
+import com.huewu.pla.lib.internal.PLA_AdapterView.OnItemClickListener;
+import com.huewu.pla.lib.internal.PLA_ListView;
 
-public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extends PullToRefreshBase<T> implements
+public abstract class PullToRefreshAdapterViewBase<T extends PLA_ListView> extends PullToRefreshBase<T> implements
 		OnScrollListener {
 
 	private static FrameLayout.LayoutParams convertEmptyViewLayoutParams(ViewGroup.LayoutParams lp) {
@@ -99,7 +103,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 		return mShowIndicator;
 	}
 
-	public final void onScroll(final AbsListView view, final int firstVisibleItem, final int visibleItemCount,
+	public final void onScroll(final PLA_AbsListView view, final int firstVisibleItem, final int visibleItemCount,
 			final int totalItemCount) {
 
 		if (DEBUG) {
@@ -126,7 +130,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 		}
 	}
 
-	public final void onScrollStateChanged(final AbsListView view, final int state) {
+	public final void onScrollStateChanged(final PLA_AbsListView view, final int state) {
 		/**
 		 * Check that the scrolling has stopped, and that the last item is
 		 * visible.
@@ -149,7 +153,7 @@ public abstract class PullToRefreshAdapterViewBase<T extends AbsListView> extend
 	 * @param adapter - Adapter to set
 	 */
 	public void setAdapter(ListAdapter adapter) {
-		((AdapterView<ListAdapter>) mRefreshableView).setAdapter(adapter);
+		((PLA_AdapterView<ListAdapter>) mRefreshableView).setAdapter(adapter);
 	}
 
 	/**

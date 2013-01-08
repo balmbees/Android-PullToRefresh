@@ -39,6 +39,7 @@ import com.handmark.pulltorefresh.library.internal.LoadingLayout;
 import com.handmark.pulltorefresh.library.internal.RotateLoadingLayout;
 import com.handmark.pulltorefresh.library.internal.Utils;
 import com.handmark.pulltorefresh.library.internal.ViewCompat;
+import com.huewu.pla.lib.internal.PLA_ListView;
 
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout implements IPullToRefresh<T> {
 
@@ -299,6 +300,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 
 	@Override
 	public final void onRefreshComplete() {
+	    Log.e(LOG_TAG,"onRefreshComplete : "+isRefreshing());
 		if (isRefreshing()) {
 			setState(State.RESET);
 		}
@@ -371,6 +373,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 
 					// If we haven't returned by here, then we're not in a state
 					// to pull, so just reset
+					Log.i(LOG_TAG,"setResetTwice");
 					setState(State.RESET);
 
 					return true;
@@ -549,11 +552,12 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	final void setState(State state, final boolean... params) {
 		mState = state;
 		if (DEBUG) {
-			Log.d(LOG_TAG, "State: " + mState.name());
+			Log.d(LOG_TAG, "State in Base : " + mState.name());
 		}
-
+		
 		switch (mState) {
 			case RESET:
+			    Log.e(LOG_TAG,"State is RESET and reset Function is calling");
 				onReset();
 				break;
 			case PULL_TO_REFRESH:
@@ -783,6 +787,9 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	 * {@link State#RESET} state.
 	 */
 	protected void onReset() {
+	    
+	    Log.e(LOG_TAG,"reset Function started");
+	    
 		mIsBeingDragged = false;
 		mLayoutVisibilityChangesEnabled = true;
 
@@ -1029,9 +1036,9 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		mCurrentMode = (mMode != Mode.BOTH) ? mMode : Mode.PULL_FROM_START;
 	}
 
-	private void addRefreshableView(Context context, T refreshableView) {
+	private void addRefreshableView(Context context, T refreshView) {
 		mRefreshableViewWrapper = new FrameLayout(context);
-		mRefreshableViewWrapper.addView(refreshableView, ViewGroup.LayoutParams.MATCH_PARENT,
+		mRefreshableViewWrapper.addView(refreshView, ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT);
 
 		addViewInternal(mRefreshableViewWrapper, new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,
@@ -1214,6 +1221,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 
 	private final void smoothScrollTo(int newScrollValue, long duration, long delayMillis,
 			OnSmoothScrollFinishedListener listener) {
+	    
+	    Log.d(LOG_TAG,"Smooth Scroll To : "+newScrollValue);
 		if (null != mCurrentSmoothScrollRunnable) {
 			mCurrentSmoothScrollRunnable.stop();
 		}
@@ -1229,6 +1238,8 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 				break;
 		}
 
+		Log.i(LOG_TAG, "oldScrollValue : "+oldScrollValue+", newScrollValue : "+newScrollValue);
+		
 		if (oldScrollValue != newScrollValue) {
 			if (null == mScrollAnimationInterpolator) {
 				// Default interpolator is a Decelerate Interpolator
@@ -1540,7 +1551,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 			}
 
 			// If not, return default
-			return RESET;
+			return State.RESET;
 		}
 
 		private int mIntValue;

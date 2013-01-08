@@ -23,6 +23,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -56,6 +57,7 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 
 	private final TextView mHeaderText;
 	private final TextView mSubHeaderText;
+	private boolean mSubHeaderDisable;
 
 	protected final Mode mMode;
 	protected final Orientation mScrollDirection;
@@ -84,7 +86,7 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 		mHeaderProgress = (ProgressBar) mInnerLayout.findViewById(R.id.pull_to_refresh_progress);
 		mSubHeaderText = (TextView) mInnerLayout.findViewById(R.id.pull_to_refresh_sub_text);
 		mHeaderImage = (ImageView) mInnerLayout.findViewById(R.id.pull_to_refresh_image);
-
+		
 		FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) mInnerLayout.getLayoutParams();
 
 		switch (mode) {
@@ -138,6 +140,14 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 			if (null != colors) {
 				setSubTextColor(colors);
 			}
+		}
+		
+		// Sub Header Disable
+		if (attrs.hasValue(R.styleable.PullToRefresh_ptrSubHeaderDisable)) {
+		    mSubHeaderDisable = attrs.getBoolean(R.styleable.PullToRefresh_ptrSubHeaderDisable, false);
+		    if (mSubHeaderDisable) {
+		        mSubHeaderText.setVisibility(View.GONE);
+		    }
 		}
 
 		// Try and get defined drawable from Attrs
@@ -259,6 +269,7 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 	}
 
 	public final void reset() {
+	    Log.i("PullToRefresh","reset LoadingLayout");
 		if (null != mHeaderText) {
 			mHeaderText.setText(mPullLabel);
 		}
@@ -275,7 +286,9 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 			if (TextUtils.isEmpty(mSubHeaderText.getText())) {
 				mSubHeaderText.setVisibility(View.GONE);
 			} else {
-				mSubHeaderText.setVisibility(View.VISIBLE);
+			    if (!mSubHeaderDisable) {
+			        mSubHeaderText.setVisibility(View.VISIBLE);
+			    }
 			}
 		}
 	}
@@ -321,7 +334,7 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 		if (View.INVISIBLE == mHeaderImage.getVisibility()) {
 			mHeaderImage.setVisibility(View.VISIBLE);
 		}
-		if (View.INVISIBLE == mSubHeaderText.getVisibility()) {
+		if (View.INVISIBLE == mSubHeaderText.getVisibility() && !mSubHeaderDisable) {
 			mSubHeaderText.setVisibility(View.VISIBLE);
 		}
 	}
@@ -350,7 +363,9 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 				mSubHeaderText.setVisibility(View.GONE);
 			} else {
 				mSubHeaderText.setText(label);
-				mSubHeaderText.setVisibility(View.VISIBLE);
+				if (!mSubHeaderDisable) {
+				    mSubHeaderText.setVisibility(View.VISIBLE);
+				}
 			}
 		}
 	}

@@ -18,6 +18,7 @@ package com.handmark.pulltorefresh.samples;
 import java.util.Arrays;
 import java.util.LinkedList;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,8 +40,9 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.State;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.extras.SoundPullEventListener;
+import com.huewu.pla.lib.internal.PLA_ListView;
 
-public final class PullToRefreshListActivity extends ListActivity {
+public final class PullToRefreshListActivity extends Activity {
 
 	static final int MENU_MANUAL_REFRESH = 0;
 	static final int MENU_DISABLE_SCROLL = 1;
@@ -58,11 +60,11 @@ public final class PullToRefreshListActivity extends ListActivity {
 		setContentView(R.layout.activity_ptr_list);
 
 		mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.pull_refresh_list);
-
+		
 		// Set a listener to be invoked when the list should be refreshed.
-		mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<ListView>() {
+		mPullRefreshListView.setOnRefreshListener(new OnRefreshListener<PLA_ListView>() {
 			@Override
-			public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+			public void onRefresh(PullToRefreshBase<PLA_ListView> refreshView) {
 				String label = DateUtils.formatDateTime(getApplicationContext(), System.currentTimeMillis(),
 						DateUtils.FORMAT_SHOW_TIME | DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_ABBREV_ALL);
 
@@ -83,7 +85,7 @@ public final class PullToRefreshListActivity extends ListActivity {
 			}
 		});
 
-		ListView actualListView = mPullRefreshListView.getRefreshableView();
+		PLA_ListView actualListView = mPullRefreshListView.getRefreshableView();
 
 		// Need to use the Actual ListView when registering for Context Menu
 		registerForContextMenu(actualListView);
@@ -100,7 +102,6 @@ public final class PullToRefreshListActivity extends ListActivity {
 		soundListener.addSoundEvent(State.PULL_TO_REFRESH, R.raw.pull_event);
 		soundListener.addSoundEvent(State.RESET, R.raw.reset_sound);
 		soundListener.addSoundEvent(State.REFRESHING, R.raw.refreshing_sound);
-		mPullRefreshListView.setOnPullEventListener(soundListener);
 
 		// You can also just use setListAdapter(mAdapter) or
 		// mPullRefreshListView.setAdapter(mAdapter)
@@ -147,7 +148,6 @@ public final class PullToRefreshListActivity extends ListActivity {
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 
-		menu.setHeaderTitle("Item: " + getListView().getItemAtPosition(info.position));
 		menu.add("Item 1");
 		menu.add("Item 2");
 		menu.add("Item 3");

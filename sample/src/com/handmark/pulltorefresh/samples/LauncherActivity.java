@@ -43,10 +43,10 @@ public class LauncherActivity extends ListActivity {
 				intent = new Intent(this, PullToRefreshListActivity.class);
 				break;
 			case 1:
-				intent = new Intent(this, PullToRefreshExpandableListActivity.class);
+				intent = new Intent(this, PullToRefreshListActivity.class);
 				break;
 			case 2:
-				intent = new Intent(this, PullToRefreshGridActivity.class);
+				intent = new Intent(this, PullToRefreshListActivity.class);
 				break;
 			case 3:
 				intent = new Intent(this, PullToRefreshWebViewActivity.class);
@@ -61,13 +61,13 @@ public class LauncherActivity extends ListActivity {
 				intent = new Intent(this, PullToRefreshViewPagerActivity.class);
 				break;
 			case 7:
-				intent = new Intent(this, PullToRefreshListFragmentActivity.class);
+				intent = new Intent(this, PullToRefreshListActivity.class);
 				break;
 			case 8:
 				intent = new Intent(this, PullToRefreshWebView2Activity.class);
 				break;
 			case 9:
-				intent = new Intent(this, PullToRefreshListInViewPagerActivity.class);
+				intent = new Intent(this, PullToRefreshListActivity.class);
 				break;
 		}
 

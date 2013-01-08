@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="pull_to_refresh_pull_label">당겨서 새로 고침…</string>
-  <string name="pull_to_refresh_release_label">놓아서 새로 고침…</string>
-  <string name="pull_to_refresh_refreshing_label">로드 중…</string>
+  <string name="pull_to_refresh_pull_label">새로고침하려면 아래로 내리세요</string>
+  <string name="pull_to_refresh_release_label">새로고침하려면 해제하세요</string>
+  <string name="pull_to_refresh_refreshing_label">업데이트중…</string>
 </resources>

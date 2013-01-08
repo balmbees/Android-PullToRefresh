@@ -49,6 +49,9 @@
         <!-- Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header -->
         <attr name="ptrSubHeaderTextAppearance" format="reference" />
 
+        <!-- Base text color, typeface, size, and style for Header and Footer Loading Views Sub Header -->
+        <attr name="ptrSubHeaderDisable" format="reference|boolean" />
+
         <!-- Style of Animation should be used displayed when pulling. -->
         <attr name="ptrAnimationStyle">
             <flag name="rotate" value="0x0" />
