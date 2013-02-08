@@ -23,7 +23,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -269,7 +268,7 @@ public abstract class LoadingLayout extends FrameLayout implements ILoadingLayou
 	}
 
 	public final void reset() {
-	    Log.i("PullToRefresh","reset LoadingLayout");
+	    //Log.i("PullToRefresh","reset LoadingLayout");
 		if (null != mHeaderText) {
 			mHeaderText.setText(mPullLabel);
 		}

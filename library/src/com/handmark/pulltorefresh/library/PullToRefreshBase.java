@@ -39,7 +39,6 @@ import com.handmark.pulltorefresh.library.internal.LoadingLayout;
 import com.handmark.pulltorefresh.library.internal.RotateLoadingLayout;
 import com.handmark.pulltorefresh.library.internal.Utils;
 import com.handmark.pulltorefresh.library.internal.ViewCompat;
-import com.huewu.pla.lib.internal.PLA_ListView;
 
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout implements IPullToRefresh<T> {
 
@@ -47,7 +46,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	// Constants
 	// ===========================================================
 
-	static final boolean DEBUG = true;
+	static final boolean DEBUG = false;
 
 	static final String LOG_TAG = "PullToRefresh";
 
@@ -223,7 +222,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 
 	@Override
 	public final boolean onInterceptTouchEvent(MotionEvent event) {
-
+	    
 		if (!isPullToRefreshEnabled()) {
 			return false;
 		}
@@ -300,7 +299,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 
 	@Override
 	public final void onRefreshComplete() {
-	    Log.e(LOG_TAG,"onRefreshComplete : "+isRefreshing());
 		if (isRefreshing()) {
 			setState(State.RESET);
 		}
@@ -373,7 +371,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 
 					// If we haven't returned by here, then we're not in a state
 					// to pull, so just reset
-					Log.i(LOG_TAG,"setResetTwice");
 					setState(State.RESET);
 
 					return true;
@@ -557,7 +554,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 		
 		switch (mState) {
 			case RESET:
-			    Log.e(LOG_TAG,"State is RESET and reset Function is calling");
 				onReset();
 				break;
 			case PULL_TO_REFRESH:
@@ -787,8 +783,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	 * {@link State#RESET} state.
 	 */
 	protected void onReset() {
-	    
-	    Log.e(LOG_TAG,"reset Function started");
 	    
 		mIsBeingDragged = false;
 		mLayoutVisibilityChangesEnabled = true;
@@ -1222,7 +1216,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	private final void smoothScrollTo(int newScrollValue, long duration, long delayMillis,
 			OnSmoothScrollFinishedListener listener) {
 	    
-	    Log.d(LOG_TAG,"Smooth Scroll To : "+newScrollValue);
 		if (null != mCurrentSmoothScrollRunnable) {
 			mCurrentSmoothScrollRunnable.stop();
 		}
@@ -1238,8 +1231,6 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 				break;
 		}
 
-		Log.i(LOG_TAG, "oldScrollValue : "+oldScrollValue+", newScrollValue : "+newScrollValue);
-		
 		if (oldScrollValue != newScrollValue) {
 			if (null == mScrollAnimationInterpolator) {
 				// Default interpolator is a Decelerate Interpolator

@@ -19,17 +19,14 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 
 import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
 import com.handmark.pulltorefresh.library.internal.LoadingLayout;
@@ -135,7 +132,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
         /**
          * If the extras are not enabled, just call up to super and return.
          */
-        Log.i("PullToRefresh","onReset is PullToRefreshListView : "+mListViewExtrasEnabled);
+        //Log.i("PullToRefresh","onReset is PullToRefreshListView : "+mListViewExtrasEnabled);
         if (!mListViewExtrasEnabled) {
             super.onReset();
             return;
@@ -145,7 +142,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
         final int scrollToHeight, selection;
         final boolean scrollLvToEdge;
 
-        Log.i("PullToRefresh","onReset is PullToRefreshListView : "+getCurrentMode().name());
+        //Log.i("PullToRefresh","onReset is PullToRefreshListView : "+getCurrentMode().name());
         switch (getCurrentMode()) {
             case MANUAL_REFRESH_ONLY:
             case PULL_FROM_END:
@@ -165,7 +162,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
                 break;
         }
 
-        Log.i("PullToRefresh","onReset is listViewLoadingLayout: "+listViewLoadingLayout.getVisibility());
+        //Log.i("PullToRefresh","onReset is listViewLoadingLayout: "+listViewLoadingLayout.getVisibility());
 
         try {
         // If the ListView header loading layout is showing, then we need to
@@ -189,11 +186,11 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
             }
         }
         } catch(Exception e) {
-            Log.e("PullToRefresh","ERROR : ");
-            e.printStackTrace();
+            //Log.e("PullToRefresh","ERROR : ");
+            //e.printStackTrace();
         }
 
-        Log.i("PullToRefresh","onReset called super.onReset()");
+        //Log.i("PullToRefresh","onReset called super.onReset()");
         // Finally, call up to super
         super.onReset();
     }
