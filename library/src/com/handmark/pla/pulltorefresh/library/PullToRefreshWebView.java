@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pulltorefresh.library;
+package com.handmark.pla.pulltorefresh.library;
 
 import android.annotation.TargetApi;
 import android.content.Context;

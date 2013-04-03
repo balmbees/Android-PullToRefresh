@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pulltorefresh.library;
+package com.handmark.pla.pulltorefresh.library;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -28,8 +28,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 
-import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
-import com.handmark.pulltorefresh.library.internal.LoadingLayout;
+import com.handmark.pla.pulltorefresh.library.internal.EmptyViewMethodAccessor;
+import com.handmark.pla.pulltorefresh.library.internal.LoadingLayout;
 import com.huewu.pla.lib.MultiColumnListView;
 import com.huewu.pla.lib.internal.PLA_ListView;
 

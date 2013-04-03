@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pulltorefresh.library;
+package com.handmark.pla.pulltorefresh.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -29,8 +29,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 
-import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
-import com.handmark.pulltorefresh.library.internal.IndicatorLayout;
+import com.handmark.pla.pulltorefresh.library.internal.EmptyViewMethodAccessor;
+import com.handmark.pla.pulltorefresh.library.internal.IndicatorLayout;
 import com.huewu.pla.lib.internal.PLA_AbsListView;
 import com.huewu.pla.lib.internal.PLA_AbsListView.OnScrollListener;
 import com.huewu.pla.lib.internal.PLA_AdapterView;
@@ -105,8 +105,8 @@ public abstract class PullToRefreshAdapterViewBase<T extends PLA_ListView> exten
 			final int totalItemCount) {
 
 		if (DEBUG) {
-			Log.d(LOG_TAG, "First Visible: " + firstVisibleItem + ". Visible Count: " + visibleItemCount
-					+ ". Total Items:" + totalItemCount);
+//			Log.d(LOG_TAG, "First Visible: " + firstVisibleItem + ". Visible Count: " + visibleItemCount
+//					+ ". Total Items:" + totalItemCount);
 		}
 
 		/**

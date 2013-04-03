@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pulltorefresh.library;
+package com.handmark.pla.pulltorefresh.library;
 
 import android.annotation.TargetApi;
 import android.util.Log;
 import android.view.View;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.State;
+import com.handmark.pla.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pla.pulltorefresh.library.PullToRefreshBase.State;
 
 @TargetApi(9)
 public final class OverscrollHelper {

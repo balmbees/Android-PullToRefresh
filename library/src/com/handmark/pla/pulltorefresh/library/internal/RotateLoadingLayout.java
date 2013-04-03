@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pulltorefresh.library.internal;
+package com.handmark.pla.pulltorefresh.library.internal;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -23,9 +23,9 @@ import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView.ScaleType;
 
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.Orientation;
-import com.handmark.pulltorefresh.library.R;
+import com.handmark.pla.pulltorefresh.library.PullToRefreshBase.Mode;
+import com.handmark.pla.pulltorefresh.library.PullToRefreshBase.Orientation;
+import com.handmark.pla.pulltorefresh.library.R;
 
 public class RotateLoadingLayout extends LoadingLayout {
 

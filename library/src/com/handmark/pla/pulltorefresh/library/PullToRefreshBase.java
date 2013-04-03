@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pulltorefresh.library;
+package com.handmark.pla.pulltorefresh.library;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -34,11 +34,11 @@ import android.view.animation.Interpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.handmark.pulltorefresh.library.internal.FlipLoadingLayout;
-import com.handmark.pulltorefresh.library.internal.LoadingLayout;
-import com.handmark.pulltorefresh.library.internal.RotateLoadingLayout;
-import com.handmark.pulltorefresh.library.internal.Utils;
-import com.handmark.pulltorefresh.library.internal.ViewCompat;
+import com.handmark.pla.pulltorefresh.library.internal.FlipLoadingLayout;
+import com.handmark.pla.pulltorefresh.library.internal.LoadingLayout;
+import com.handmark.pla.pulltorefresh.library.internal.RotateLoadingLayout;
+import com.handmark.pla.pulltorefresh.library.internal.Utils;
+import com.handmark.pla.pulltorefresh.library.internal.ViewCompat;
 
 public abstract class PullToRefreshBase<T extends View> extends LinearLayout implements IPullToRefresh<T> {
 
@@ -946,7 +946,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
 	 */
 	protected final void setHeaderScroll(final int value) {
 		if (DEBUG) {
-			Log.d(LOG_TAG, "setHeaderScroll: " + value);
+//			Log.d(LOG_TAG, "setHeaderScroll: " + value);
 		}
 
 		if (mLayoutVisibilityChangesEnabled) {
