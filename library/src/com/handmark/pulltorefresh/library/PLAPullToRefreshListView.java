@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.handmark.pla.pulltorefresh.library;
+
+package com.handmark.pulltorefresh.library;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -28,12 +29,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 
-import com.handmark.pla.pulltorefresh.library.internal.EmptyViewMethodAccessor;
-import com.handmark.pla.pulltorefresh.library.internal.LoadingLayout;
+import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
+import com.handmark.pulltorefresh.library.internal.LoadingLayout;
 import com.huewu.pla.lib.MultiColumnListView;
 import com.huewu.pla.lib.internal.PLA_ListView;
 
-public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_ListView> {
+public class PLAPullToRefreshListView extends PLAPullToRefreshAdapterViewBase<PLA_ListView> {
 
     private LoadingLayout mHeaderLoadingView;
     private LoadingLayout mFooterLoadingView;
@@ -42,19 +43,19 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
 
     private boolean mListViewExtrasEnabled;
 
-    public PullToRefreshListView(Context context) {
+    public PLAPullToRefreshListView(Context context) {
         super(context);
     }
 
-    public PullToRefreshListView(Context context, AttributeSet attrs) {
+    public PLAPullToRefreshListView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public PullToRefreshListView(Context context, Mode mode) {
+    public PLAPullToRefreshListView(Context context, Mode mode) {
         super(context, mode);
     }
 
-    public PullToRefreshListView(Context context, Mode mode, AnimationStyle style) {
+    public PLAPullToRefreshListView(Context context, Mode mode, AnimationStyle style) {
         super(context, mode, style);
     }
 
@@ -70,7 +71,8 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
          * the header/footer views won't show so we use the normal method.
          */
         ListAdapter adapter = mRefreshableView.getAdapter();
-        if (!mListViewExtrasEnabled || !getShowViewWhileRefreshing() || null == adapter || adapter.isEmpty()) {
+        if (!mListViewExtrasEnabled || !getShowViewWhileRefreshing() || null == adapter
+                || adapter.isEmpty()) {
             super.onRefreshing(doScroll);
             return;
         }
@@ -132,7 +134,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
         /**
          * If the extras are not enabled, just call up to super and return.
          */
-        //Log.i("PullToRefresh","onReset is PullToRefreshListView : "+mListViewExtrasEnabled);
+        // Log.i("PullToRefresh","onReset is PullToRefreshListView : "+mListViewExtrasEnabled);
         if (!mListViewExtrasEnabled) {
             super.onReset();
             return;
@@ -142,7 +144,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
         final int scrollToHeight, selection;
         final boolean scrollLvToEdge;
 
-        //Log.i("PullToRefresh","onReset is PullToRefreshListView : "+getCurrentMode().name());
+        // Log.i("PullToRefresh","onReset is PullToRefreshListView : "+getCurrentMode().name());
         switch (getCurrentMode()) {
             case MANUAL_REFRESH_ONLY:
             case PULL_FROM_END:
@@ -162,41 +164,42 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
                 break;
         }
 
-        //Log.i("PullToRefresh","onReset is listViewLoadingLayout: "+listViewLoadingLayout.getVisibility());
+        // Log.i("PullToRefresh","onReset is listViewLoadingLayout: "+listViewLoadingLayout.getVisibility());
 
         try {
-        // If the ListView header loading layout is showing, then we need to
-        // flip so that the original one is showing instead
-        if (listViewLoadingLayout.getVisibility() == View.VISIBLE) {
+            // If the ListView header loading layout is showing, then we need to
+            // flip so that the original one is showing instead
+            if (listViewLoadingLayout.getVisibility() == View.VISIBLE) {
 
-            // Set our Original View to Visible
-            originalLoadingLayout.showInvisibleViews();
+                // Set our Original View to Visible
+                originalLoadingLayout.showInvisibleViews();
 
-            // Hide the ListView Header/Footer
-            listViewLoadingLayout.setVisibility(View.GONE);
+                // Hide the ListView Header/Footer
+                listViewLoadingLayout.setVisibility(View.GONE);
 
-            /**
-             * Scroll so the View is at the same Y as the ListView
-             * header/footer, but only scroll if: we've pulled to refresh, it's
-             * positioned correctly
-             */
-            if (scrollLvToEdge && getState() != State.MANUAL_REFRESHING) {
-                mRefreshableView.setSelection(selection);
-                setHeaderScroll(scrollToHeight);
+                /**
+                 * Scroll so the View is at the same Y as the ListView
+                 * header/footer, but only scroll if: we've pulled to refresh,
+                 * it's positioned correctly
+                 */
+                if (scrollLvToEdge && getState() != State.MANUAL_REFRESHING) {
+                    mRefreshableView.setSelection(selection);
+                    setHeaderScroll(scrollToHeight);
+                }
             }
-        }
-        } catch(Exception e) {
-            //Log.e("PullToRefresh","ERROR : ");
-            //e.printStackTrace();
+        } catch (Exception e) {
+            // Log.e("PullToRefresh","ERROR : ");
+            // e.printStackTrace();
         }
 
-        //Log.i("PullToRefresh","onReset called super.onReset()");
+        // Log.i("PullToRefresh","onReset called super.onReset()");
         // Finally, call up to super
         super.onReset();
     }
 
     @Override
-    protected LoadingLayoutProxy createLoadingLayoutProxy(final boolean includeStart, final boolean includeEnd) {
+    protected LoadingLayoutProxy createLoadingLayoutProxy(final boolean includeStart,
+            final boolean includeEnd) {
         LoadingLayoutProxy proxy = super.createLoadingLayoutProxy(includeStart, includeEnd);
 
         if (mListViewExtrasEnabled) {
@@ -236,10 +239,12 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
     protected void handleStyledAttributes(TypedArray a) {
         super.handleStyledAttributes(a);
 
-        mListViewExtrasEnabled = a.getBoolean(R.styleable.PullToRefresh_ptrListViewExtrasEnabled, true);
+        mListViewExtrasEnabled = a.getBoolean(R.styleable.PullToRefresh_ptrListViewExtrasEnabled,
+                true);
 
         if (mListViewExtrasEnabled) {
-            final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+            final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL);
 
             // Create Loading Views ready for use later
@@ -272,14 +277,17 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
         }
 
         @Override
-        protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX,
+        protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY,
+                int scrollRangeX,
                 int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
 
-            final boolean returnValue = super.overScrollBy(deltaX, deltaY, scrollX, scrollY, scrollRangeX,
+            final boolean returnValue = super.overScrollBy(deltaX, deltaY, scrollX, scrollY,
+                    scrollRangeX,
                     scrollRangeY, maxOverScrollX, maxOverScrollY, isTouchEvent);
 
             // Does all of the hard work...
-            OverscrollHelper.overScrollBy(PullToRefreshListView.this, deltaX, scrollX, deltaY, scrollY, isTouchEvent);
+            OverscrollHelper.overScrollBy(PLAPullToRefreshListView.this, deltaX, scrollX, deltaY,
+                    scrollY, isTouchEvent);
 
             return returnValue;
         }
@@ -335,7 +343,7 @@ public class PullToRefreshListView extends PullToRefreshAdapterViewBase<PLA_List
 
         @Override
         public void setEmptyView(View emptyView) {
-            PullToRefreshListView.this.setEmptyView(emptyView);
+            PLAPullToRefreshListView.this.setEmptyView(emptyView);
         }
 
         @Override
