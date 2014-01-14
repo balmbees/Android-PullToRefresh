@@ -39,7 +39,6 @@
         <dependency>
             <groupId>com.huewu.pla</groupId>
             <artifactId>pla</artifactId>
-            <version>1.02</version>
             <type>apklib</type>
         </dependency>
     </dependencies>
