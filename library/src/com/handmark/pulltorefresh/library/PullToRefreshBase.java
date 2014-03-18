@@ -1647,7 +1647,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
         if(mOnPullScrollChangeListener != null)
-            mOnPullScrollChangeListener.onPullScrollChanged(l, t, oldl, oldt);
+            mOnPullScrollChangeListener.onPullScrollChanged(l, t, oldl, oldt, getHeaderSize(), getFooterSize());
     }
 
     static interface OnSmoothScrollFinishedListener {
@@ -1655,7 +1655,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
     }
 
     public static interface OnPullScrollChangeListener {
-        public void onPullScrollChanged(int l, int t, int oldl, int oldt);
+        public void onPullScrollChanged(int l, int t, int oldl, int oldt, int headerSize, int footerSize);
     }
 
 }
