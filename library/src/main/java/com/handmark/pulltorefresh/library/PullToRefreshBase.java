@@ -96,6 +96,7 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
     private OnRefreshListener<T> mOnRefreshListener;
     private OnRefreshListener2<T> mOnRefreshListener2;
     private OnPullEventListener<T> mOnPullEventListener;
+    private OnPullScrollChangeListener mOnPullScrollChangeListener;
 
     private SmoothScrollRunnable mCurrentSmoothScrollRunnable;
 
@@ -1638,8 +1639,23 @@ public abstract class PullToRefreshBase<T extends View> extends LinearLayout imp
         }
     }
 
+    public void setOnPullScrollChangeListener(OnPullScrollChangeListener onPullScrollChangeListener) {
+        mOnPullScrollChangeListener = onPullScrollChangeListener;
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if(mOnPullScrollChangeListener != null)
+            mOnPullScrollChangeListener.onPullScrollChanged(l, t, oldl, oldt);
+    }
+
     static interface OnSmoothScrollFinishedListener {
         void onSmoothScrollFinished();
+    }
+
+    public static interface OnPullScrollChangeListener {
+        public void onPullScrollChanged(int l, int t, int oldl, int oldt);
     }
 
 }
