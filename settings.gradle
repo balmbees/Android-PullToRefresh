@@ -1,2 +1,2 @@
-include ':sample'
-include ':library'
+include ':ptr-sample', ':ptr-library'
+include 'pla:library'
